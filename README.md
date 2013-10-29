@@ -14,6 +14,10 @@ use
 
 features:
 =======================
+0.extends model with cd and lm fields
+	cd - creation date
+	lm - last modified. automaticly assigned when save
+
 
 1.metadata-based constructor.
 
@@ -44,9 +48,9 @@ mark your fields with "search:true" attribute, and they will be included in mong
 
 call 
 ```js
-        Model.search(data,(err,result)->)	
+        Model.search(searchString,options,(err,result)->)	
 ```
-data can include pagingOptions field(see above), otherwise it will use standard values(limit 50)
+options can include pagingOptions field(see above), otherwise it will use standard values(limit 50)
 and will produce result like 
 ```js
 {
