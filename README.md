@@ -25,14 +25,14 @@ call Model.construct(rawJsonObject) to get model
 
 2.Paging filter
 pass your mongoose query(e.g Model.find({}) hook) alongside with paging options to Model.paginateQuery
-
-query = Model.find({})
-pagingOptions ={
-	limit:30,
-	skip:0,
-	sort:"cd" //or "-cd" to reverse order
-}
- 
+```js
+        query = Model.find({})
+        pagingOptions ={
+        	limit:30,
+        	skip:0,
+        	sort:"cd" //or "-cd" to reverse order
+        }
+         
 
 readyToExecuteQuery = Model.paginateQuery(query,pagingOptions)  
 readyToexecuteQuery.exec (err,entities)->
@@ -42,10 +42,13 @@ readyToexecuteQuery.exec (err,entities)->
 
 mark your fields with "search:true" attribute, and they will be included in mongo $regex search
 
-call Model.search(data,(err,result)->)	
+call 
+```js
+        Model.search(data,(err,result)->)	
 
 data can include pagingOptions field(see above), otherwise it will use standard values(limit 50)
 and will produce result like 
+```js
 {
  count:30,
  collectionName:[entitiesCollection] 
@@ -61,17 +64,17 @@ in 90 % cases we should restrict find results by some condition, based on user.r
 Thats right also about search.
 Search query is beign built from 2 static public methods - addSearchParamsToQuery and getListQuery
 
-
-module.exports = (data,callback)->
-    #designed to be used in asynchronous control flow libs like async.js
-    #if you want to specify custom filters, just re-define this method in your model statics
-    ###EXAMPLE
-        if data.user.isInRole "admin"
+```js
+        module.exports = (data,callback)->
+            #designed to be used in asynchronous control flow libs like async.js
+            #if you want to specify custom filters, just re-define this method in your model statics
+            ###EXAMPLE
+                if data.user.isInRole "admin"
+                    callback null,{}
+                else if data.user.isInRole "user"
+                    callback null,{ownerId:data.userId}
+            ###
             callback null,{}
-        else if data.user.isInRole "user"
-            callback null,{ownerId:data.userId}
-    ###
-    callback null,{}
 
 If you want custom list query filter, just define your Model.statics.getListQuery(data,callback) after you use the plugin 
 
