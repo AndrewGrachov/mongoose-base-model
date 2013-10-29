@@ -37,7 +37,7 @@ pass your mongoose query(e.g Model.find({}) hook) alongside with paging options 
 readyToExecuteQuery = Model.paginateQuery(query,pagingOptions)  
 readyToexecuteQuery.exec (err,entities)->
 	//do something with entities
-
+```
 2.metadata-based regex search
 
 mark your fields with "search:true" attribute, and they will be included in mongo $regex search
@@ -45,7 +45,7 @@ mark your fields with "search:true" attribute, and they will be included in mong
 call 
 ```js
         Model.search(data,(err,result)->)	
-
+```
 data can include pagingOptions field(see above), otherwise it will use standard values(limit 50)
 and will produce result like 
 ```js
@@ -57,7 +57,7 @@ and will produce result like
 //collection name is based on name of your mongodb collection. e.g. if you have collection named 'users'
 //result will be 
 //   {count:30,users:[arrayOfUsers]} 
-
+```
 Advanced
 =========================
 in 90 % cases we should restrict find results by some condition, based on user.role or something.
@@ -75,7 +75,7 @@ Search query is beign built from 2 static public methods - addSearchParamsToQuer
                     callback null,{ownerId:data.userId}
             ###
             callback null,{}
-
+```
 If you want custom list query filter, just define your Model.statics.getListQuery(data,callback) after you use the plugin 
 
 when you call Model.search(searchTerm,data,callback)
