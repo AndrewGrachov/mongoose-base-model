@@ -1,0 +1,23 @@
+{
+    "name": "mongoose-base-entity",
+    "version": "0.1.0",
+    "author": "Andrew Grachov <dronoff198@gmail.com>",
+    "description": "A mongoose plugin, which handles generic tasks for entities, through schema extension.",
+    "contributors": [
+        "Your email here"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bhelx/mongoose-mass-assignment"
+    },
+    "dependencies": {
+        "mongoose": "3.x.x",
+        "async":"*",
+        "underscore":"*",
+
+
+    },
+    "devDependencies": {
+
+    }
+}
